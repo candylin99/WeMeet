@@ -1,0 +1,278 @@
+.main{
+  background: #F5F5F5;
+}
+.main_content{
+  min-height: 105vh;
+}
+.address{
+  background: #FFF;
+  position: relative;
+  padding: 30rpx 88rpx 30rpx 100rpx;
+  height: auto;
+  width: auto;
+  border-top: 2rpx solid #E8E8E8;
+}
+.address .address_icon{
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  left: 26rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+}
+.address .user_tel{
+  font-size: 26rpx;
+  color: #202123;
+  position: absolute;
+  top: 30rpx;
+  right: 88rpx;
+}
+.address .user_name{
+  font-size: 26rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+.address .address_details{
+  font-size: 26rpx;
+  color: #2D2F3C;
+  line-height: 32rpx;
+  font-weight: 300;
+}
+.address .gt_icon{
+  width: 16rpx;
+  height: 26rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+}
+.address .no_address{
+  font-size: 32rpx;
+  font-weight: 500;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+
+.orders,
+.order{
+  padding-bottom: 120rpx;
+}
+.orders_iphoneX{
+  padding-bottom: 190rpx;
+}
+.orders .user_item,
+.order .user_item{
+  background: #FFF;
+  margin-top: 16rpx;
+  padding: 0 30rpx;
+}
+.orders .user_info,
+.order .user_info{
+  padding: 30rpx 0;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-bottom: 2rpx solid #E8E8E8;
+}
+.orders .user_info image,
+.order .user_info image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.orders .user_info view,
+.order .user_info view{
+  font-size: 26rpx;
+}
+.orders .order_item,
+.order .order_item{
+  position: relative;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #E8E8E8;
+}
+.orders .order_item .image,
+.order .order_item .image{
+  border-radius: 12rpx;
+  width: 286rpx;
+  height: 146rpx;
+  margin-right: 30rpx;
+}
+.orders .order_item .good_title,
+.order .order_item .good_title{
+  font-size: 26rpx;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  width: 360rpx;
+  margin-bottom: 40rpx;
+}
+.orders .order_item .good_type,
+.order .order_item .good_type{
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  width: 360rpx;
+  color: #8E8E8E;
+  font-size: 24rpx;
+}
+.orders .order_item .good_price,
+.order .order_item .good_price{
+  color: #AE2121;
+  font-size: 26rpx;
+  position: absolute;
+  left: 316rpx;
+  bottom: 30rpx;
+  line-height: 1em;
+}
+.orders .order_item .count_num,
+.order .order_item .count_num{
+  font-size: 26rpx;
+  position: absolute;
+  right: 0;
+  bottom: 30rpx;
+  line-height: 1em;
+  color: #8E8E8E;
+}
+
+.order_item .count_num .add_icon,
+.order_item .count_num .sub_icon{
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #E8E8E8;
+  background: none;
+  padding: 6rpx;
+  box-sizing: border-box;
+}
+.order_item .count_num .good_num{
+  display: block;
+  width: 64rpx;
+  text-align: center;
+  height: 30rpx;
+}
+
+
+.postage_num,
+.desc{
+  border-bottom: 2rpx solid #E8E8E8;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+}
+.postage_num .label,
+.desc .label{
+  font-weight: 600;
+}
+.desc{
+  border: none;
+}
+
+.desc input{
+  height: 88rpx;
+  line-height: 88rpx;
+  width: 460rpx;
+  margin-left: 20rpx;
+}
+
+
+
+
+
+.buy{
+  position: fixed;
+  bottom: 0;
+  background: #FFF;
+  border-top: 2rpx solid #E8E8E8;
+  height: 96rpx;
+  width: 100vw;
+  z-index: 999;
+}
+.buy .buy_btn{
+  position: relative;
+  width: 256rpx;
+  height: 98rpx;
+  top: -2rpx;
+  color: #FFF;
+  text-align: center;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  background: #AE2121;
+}
+.buy .postage{
+  color: #8E8E8E;
+  font-size: 24rpx;
+  line-height: 96rpx;
+  margin: 0 30rpx 0 20rpx;
+}
+.buy .tatol{
+  font-size: 24rpx;
+  line-height: 96rpx;
+  float:left;
+  padding-left:30rpx;
+
+}
+.buy .tatol text{
+  color: #AE2121;
+  font-size: 28rpx;
+}
+.buy_iphoneX{
+  padding-bottom: 68rpx;
+}
+
+.main{
+  height: 100vh;
+}
+.return_top{
+  width: 76rpx;
+  height: 76rpx;
+  position: fixed;
+  right: 32rpx;
+  bottom: 80rpx;
+  background: none;
+}
+.return_index{
+  width: 76rpx;
+  height: 76rpx;
+  position: fixed;
+  right: 32rpx;
+  bottom: 80rpx;
+  background: none;
+}
+navigator{
+  width: 100%;
+  height: 100%;
+}
+view,
+text{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+image{
+  background: #ECECEC;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.clearBoth:after{
+	content: " ";
+	display: block;
+	clear: both;
+}
+.clearBoth:before{
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+view,
+text{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.float_left{
+  float: left;
+}
+.float_right{
+  float: right;
+}

@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/index/index",
+    "pages/detail/detail", 
+    "pages/initiate/initiate",
+    "pages/storedetail/storedetail",
+    "pages/search/search",
+    "pages/mine/mine",
+    "pages/mine/message/message",
+    "pages/mine/news/news",
+    "pages/mine/about/about",
+    "pages/mine/myjoin/myjoin",
+    "pages/mine/myhost/myhost",
+    "pages/mine/issues/issues",
+    "pages/mine/more/more",
+    "pages/myinfo/myinfo",
+    "pages/myinfo/bycard/bycard",                 
+    "pages/myinfo/bypay/bypay",
+    "pages/createOrder/createOrder",
+    "pages/orders/orders",    
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeMeet",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#9BABBA",
+    "selectedColor": "#495056",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/initiate/initiate",
+        "text": "发起",
+        "iconPath": "static/images/add.png",
+        "selectedIconPath": "static/images/add_fill.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home_fill.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我",
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/my_fill.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将被用于小程序提供个性化服务"
+    }
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.2.2",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "networkTimeout": {
+    "request": 4000,
+    "downloadFile": 40000
+  },
+  "sitemapLocation": "sitemap.json"
+}

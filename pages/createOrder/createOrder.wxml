@@ -1,0 +1,81 @@
+<scroll-view class="main" scroll-y>
+  <view class='main_content'>
+    <!-- <view class='address' bindtap='navigateToAddress'>
+      <image class='address_icon' src='/static/images/address.png'></image>
+      <view class='user_tel' wx:if="{{addressInfo}}">{{addressInfo.telphone}}</view>
+      <view class='user_name' wx:if="{{addressInfo}}">收货人： {{addressInfo.name}}</view>
+      <view class='address_details' wx:if="{{addressInfo}}">收货地址： {{addressInfo.province}}{{addressInfo.city}}{{addressInfo.county}}{{addressInfo.detail}}</view>
+      <image class='gt_icon' src='/static/images/gt.png'></image>
+      <view class='no_address' wx:if="{{!addressInfo}}">添加地址</view> -->
+    <!-- </view> -->
+    <!-- 直接购买，购物车购买，待支付订单， 如果数据格式统一可以合并 -->
+    <!-- 单个订单 -->
+    <view class='order' wx:if="{{orderType == 0}}">
+      <view class='user_item'>
+        <view class='user_info'>
+          <image class='float_left' src='{{singleOrder.seller.avatar}}'></image>
+          <view class='float_left'>{{goodname}}</view>
+        </view>
+        <view class='order_item clearBoth'>
+          <image class='float_left image' src='{{goodpic}}'></image>
+          <view class='good_title float_left'>{{goodtitle}}</view>
+          <view class='good_type float_left'>{{singleOrder.newType[0].name}}</view> 
+          <view class='good_price float_left'>￥ {{goodprice}}</view> 
+          <view class='count_num'>
+            <image class='sub_icon float_left' src='/static/images/sub.png' bindtap='subNum'></image>
+            <text class="good_num float_left">1</text>
+            <image class='add_icon float_left' src='/static/images/add.png' bindtap='addNum' data-remain="{{singleOrder.newType[0].stock}}"></image>
+          </view>
+        </view>
+   <view class='desc clearBoth'>
+          <view class='float_left label'>联系人：</view>
+          <input class='float_left' placeholder="请填写联系人" bindinput='descContent'/>
+        </view>
+<view class='desc clearBoth'>
+          <view class='float_left label'>手机号</view>
+          <input class='float_left' placeholder="请输入电话号码" bindinput='descContent'/>
+        </view>
+
+   <view class='desc clearBoth'>
+          <view class='float_left label'>备注：</view>
+          <input class='float_left' placeholder="如有特殊需求，请留下留言哦！" bindinput='descContent'/>
+        </view>
+
+      </view>
+    </view>
+    <!-- 多个订单 -->
+    <view class="orders {{isIphoneX ? 'orders_iphoneX' : ''}}" wx:if="{{orderType == 1}}">
+      <view class='user_item' wx:if="{{item.childOrderShow}}" wx:key="key" wx:for="{{orderList}}">
+        <view class='user_info'>
+          <image class='float_left' src="{{item.seller_avatar}}"></image>
+          <view class='float_left'>{{item.seller_name}}</view>
+        </view>
+        <view class='order_item clearBoth' wx:key="key" wx:for="{{item.item}}" wx:for-item="good" wx:if="{{good.selectStatus}}">
+          <image class='float_left image' src='{{good.image}}'></image>
+          <view class='good_title float_left'>{{good.item_name}}</view>
+          <view class='good_type float_left'>{{good.model_desc ? good.model_desc: ''}}</view>
+          <view class='good_price float_left'>￥ {{good.price}}</view>
+          <view class='count_num'>
+            <image class='sub_icon float_left' src='/images/sub.png' bindtap='subNum' data-id="{{good.id}}"></image>
+            <text class="good_num float_left">{{good.numbers}}</text>
+            <image class='add_icon float_left' src='/images/add.png' bindtap='addNum' data-id="{{good.id}}" data-remain="{{good.remain}}"></image>
+          </view>
+        </view>
+        <view class='postage_num clearBoth'>
+          <view class='float_left label'>运费</view>
+          <!-- maxPostage获取数据后计算 -->
+          <view class='float_right postage_price'>￥ {{item.maxPostage}}</view>
+        </view>
+        <view class='desc clearBoth'>
+          <view class='float_left label'>留言：</view>
+          <input class='float_left' placeholder='请告诉我你特殊的小癖好' bindinput='descContent' data-userid="{{item.seller_user_id}}"/>
+        </view>
+      </view>
+    </view>
+    <view class="buy {{isIphoneX ? 'buy_iphoneX' : ''}}">
+      <view class='buy_btn float_right' bindtap='payment'>微信支付</view>
+
+      <view class='tatol float_right'>总计： <text>￥ {{totalPrice}}</text></view>
+    </view>
+  </view>
+</scroll-view>

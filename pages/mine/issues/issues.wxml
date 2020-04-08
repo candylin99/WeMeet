@@ -1,0 +1,64 @@
+<!--issues.wxml-->
+<view class="container">
+
+  <view class="issues-list" wx:if="{{status}}">
+    <block>
+      <!--无反馈记录-->
+      <view wx:if="{{hasFeed == false}}">
+        <view class="imgitem">
+          <image src="/static/images/norecord1.png" class="empty_img"></image>
+        </view>
+        <view class="txtitem">
+          <text class="t28rpx">暂无您的反馈记录</text>
+        </view>
+      </view>
+      <view wx:if="{{hasFeed}}" wx:for="{{feedList}}" wx:key="id" class="issues-item {{index == itemopen ? '' : 'close'}}" data-index="{{index}}" bindtap="openItem">
+        <text class="btn-text">{{item.title}}</text>
+        <text class="item-status">{{item.pubtime}}</text>
+        <view class="btn-open" wx:if="{{index != itemopen}}">
+          <image class="btn-open-img" src="/static/images/more/down.png"></image>
+        </view>
+
+        <view class="item-bd" wx:else>
+          <view class="item-comment">
+            <image class="item-comment-img" src="{{item.feedpic}}"></image>
+            <view class="item-comment-bd">
+              <text>{{item.content}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <text class="issues-remind"></text>
+    </block>
+  </view>
+
+  <block wx:else>
+    <form bindsubmit="submitForm">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+      <view class="issues-panel">
+      <text style='font-size:35rpx;padding: 15rpx 25rpx;'>问题和反馈</text>
+        <textarea class="issues-textarea" cursor-spacing="50" placeholder="请输入反馈内容..." name="content" value="{{content}}"></textarea>
+        <view class="issues-photo-item add-photo" bindtap="uploadPic" wx:if="{{!isSrc}}"></view>
+          <view wx:if="{{isSrc}}" class="image_box">
+            <view class="picPre">
+              <image src="{{src}}" mode="aspectFit"></image>
+              <view bindtap="clearPic"></view>
+            </view>
+          </view>
+      </view>
+    </form>
+  </block>
+  <view class="bottom">     
+  <text style='font-size:35rpx;position:relative;top:20rpx;left:20rpx;height:50rpx;'>分类标签</text>
+  <view style='height:200rpx;'>
+  <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:60rpx 40rpx 0 30rpx;float:left;'>作品推荐</view>
+    <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:60rpx 30rpx 0 30rpx;float:left;'>产品BUG</view>
+      <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:60rpx 30rpx 0 30rpx;float:left;'>作品审核</view>
+        <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:30rpx 40rpx 0 30rpx;float:left;'>其他建议</view>
+          <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:30rpx 30rpx 0 30rpx;float:left;'>禁言申诉</view>
+            <view style='width:180rpx;height:50rpx;border:1px solid;border-radius:5px;text-align:center;margin:30rpx 30rpx 0 30rpx;float:left;'>账号问题</view>
+  </view>
+   <button class="submit-btn" loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit" >提交反馈</button>
+</view>
+</view>

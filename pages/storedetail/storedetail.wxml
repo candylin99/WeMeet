@@ -1,0 +1,152 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/>   
+
+<loading hidden="{{loading}}">页面加载中</loading>
+
+
+<scroll-view scroll-y="true" class="all_scr" style="height:{{scrollHeight}}px" scroll-into-view="{{toView}}"  bindscroll="queryMultipleNodes">
+<view bindscroll="focusScroll" class="onscorllview">
+
+
+  <image wx:if="{{listPic}}" class="header_imgss" src="{{listPic}}" mode="aspectFill" bindtap='seeActBig'></image>
+  <view class="event_con">
+    <!--店内信息-->
+    <template is="actCode" data="{{listPic,imageBytes,codeHehe}}" />
+    <view class="event_title paddingLR" id="idtitle">
+      <text class="text-title" style='font-size:20px;'>{{listTitle}}</text>
+         <view class="imgbox"   id="viewa" >
+          <image catchtap="showQrcode" class="clubHome-qrcode"  src="/static/images/more/ewm.png">
+</image>
+</view>
+
+    </view>
+
+<!-- -----商家地址----- -->
+<!-- <view class='sort'>
+ <view class="storeinfo">
+
+<image class="storeinfo-image" src='/assets/images/mapinfo.png'  bindtap="viewActAddress" > </image>
+<text class="storeinfo-text">{{address}}</text>
+ </view>
+</view> -->
+
+
+
+<view class="storeinfo" >
+<view class='sort'>
+   <text style='float:left;font-size:18px;margin-left:10px;margin-top:20px;width:350px;text-align:left;'>  {{name}}
+      </text>
+</view>
+      </view>
+      <view class="actDetail" style="margin-top:35rpx;">
+        <view style="padding:0 20rpx 50rpx;">
+          <block class="act_contents paddingLR">
+            
+            <text style='color:grey;' >营业时间：10:00--22:00\n</text>
+            <text style='color:grey;' >商家电话:{{phonenumber}}\n</text>
+            
+             <text bindtap="viewActAddress" style='color:grey;' >地址:{{address}}\n</text>
+
+          </block>
+        </view>
+        </view>
+
+
+
+
+<view class="{{tarBarFixed? 'topnavFixed' : 'topnavAbsolute'}}">
+    <view class="sort">
+      <view class="xiangqing" bindtap="toproductinfo">
+        <text class="sort1" id="0">产品介绍
+      </text>
+        <view class="detail-tabar-border {{status==0?'detail-tabar-bg':''}}"></view>
+      </view>
+      <view  class="xiangqing" bindtap="toattention">
+        <text class="sort1" id="1">预定须知
+      </text>
+        <view class="detail-tabar-border {{status==1?'detail-tabar-bg':''}}"></view>
+      </view>
+            <view  class="xiangqing" bindtap="tofareinfo">
+        <text class="sort1" id="2">费用说明
+      </text>
+        <view class="detail-tabar-border {{status==2?'detail-tabar-bg':''}}"></view>
+      </view>
+      
+    </view>
+</view>
+
+
+    <!--活动内容-->
+    <view >
+      <view class="actDetail" style="margin-top:05px; width:100%" >
+        <view>
+          <block class="act_contents paddingLR" style="width:100%">
+         <view class="h5view"><template is="wxParse" data="{{wxParseData:article.nodes}}" /></view>  
+            <!-- <text>{{listContent}}</text> -->
+          </block>
+        </view>
+
+<view class="attention" id="viewb">
+<view class='sort'>
+   <text style='float:left;font-size:18px;margin-left:10px;margin-top:20px;width:350px;text-align:left;'>  预定须知
+      </text>
+</view>
+      </view>
+      <view class="actDetail" style="margin-top:35rpx;">
+        <view style="padding:0 10rpx 50rpx;">
+          <block class="act_contents paddingLR">
+            <text style='color:grey;'>{{listAttention}}</text>
+          </block>
+        </view>
+        </view>
+
+
+<view class="fare" >
+<view class='sort'>
+   <text style='float:left;font-size:18px;margin-left:10px;margin-top:20px;width:350px;text-align:left;'>  费用说明
+      </text>
+</view>
+      </view>
+      <view class="actDetail" style="margin-top:35rpx;">
+        <view style="padding:0 10rpx 50rpx;"id="viewc">
+          <block class="act_contents paddingLR">
+            <text style='color:grey;' >{{fareinfo}}</text>
+          </block>
+        </view>
+        </view>
+
+<view id="viewd"> 
+</view>
+
+      </view>
+    </view>
+
+<view class="centerbutton-view">
+  <view class="centerbutton-c">
+    <form bindtap="navigateToCreateOrder" data-join="{{join}}" report-submit="true">
+      <button class="centerbutton {{join == 0?'un-has':'has'}}" form-type="submit">
+    
+        <view wx:if="{{join != 3}}">
+          <view wx:if="{{peoplenum < 0}}">
+            <view wx:if="{{join == 0}}">现在加入</view>
+            <view wx:elif="{{join == 1}}">取消加入</view>
+          </view>
+          <view wx:if="{{peoplenum > 0}}">
+            <view wx:if="{{peoplenum-joinnumber > 0 && join == 0}}">现在加入</view>
+            <view wx:elif="{{peoplenum-joinnumber > 0 && join == 1}}">取消加入</view>
+          </view>
+        </view>
+      </button>
+    </form>
+    </view>
+  <!-- <!-- </view> -->
+</view>
+
+
+
+
+  </view>
+  </view>
+</scroll-view>
+

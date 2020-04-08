@@ -1,0 +1,9 @@
+<!--pages/mine/mine.wxml-->
+<view class="container-mine">
+   
+                     <image src="../../../assets/images/idali.png"/>
+<text style="color:grey;text-align:center;">微信支付一键认证</text>
+     
+         <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">微信支付一键认证</button>
+                </view>
+     

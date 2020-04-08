@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "WeMeet",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance":70,
+  "navigationBarTextStyle": "black"
+}
+ 

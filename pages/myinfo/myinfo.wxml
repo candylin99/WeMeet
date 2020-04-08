@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="page__hd">
+          <view class="page__hd-md center">
+              <image src="{{userInfo.avatarUrl}}"/>
+          </view>
+  </view>
+
+  <form style='margin-top:70rpx'bindsubmit="formSubmit">
+
+      <view class="info-view">
+      <view style='width:100%'>  <text>姓名</text> </view>
+        <input name="realname" class="input" maxlength="{{nameMaxLen}}" placeholder="请填写真实姓名" value="{{realname}}" bindinput="bindInputChange" data-status="0"/>
+      <view class="chnumber">{{nameNowLen}}/{{nameMaxLen}}</view>
+
+      </view>
+
+
+    <view class="info-view">
+      <text>手机号</text>
+          <input class="input" maxlength="11" placeholder="请填写手机号" name="phone" value="{{phnumber}}" bindinput="bindInputChange" data-status="1"/>
+          <view class="chnumber">{{phoneNowLen}}/{{phoneMaxLen}}</view>
+      </view>
+    <text style='float:left;font-size:34rpx;margin-left:40rpx;margin-bottom:10rpx;width:350px;text-align:left;color:grey;'>学生权益认证</text>
+    <view class='advance'>
+    <view class="act" bindtap='tobycard'>
+    学生证认证
+                </view>
+                <view class="act" bindtap='tobypay'>
+                微信支付一键认证
+                </view>
+                </view>
+            <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit" bindtap='getuser'>完成</button>
+  </form> 
+</view>
+     

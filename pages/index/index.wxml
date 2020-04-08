@@ -1,0 +1,120 @@
+<!-- index.wxml -->
+
+
+<view class="indexpage" >
+  <scroll-view upper-threshold="100" scroll-y="true" style="height: 100%;">
+
+    <view style='height:130rpx;'>
+    <view>
+<text style='float:left;font-size:50rpx;margin-left:40rpx;width:350px;text-align:left;'>WeMeet</text>
+<text style='float:left;font-size:30rpx;margin-left:115px;width:350px;text-align:left;margin-top:-28px' bindtap="switcharea">（狮山大学城）</text>
+
+<text style='float:left;font-size:35rpx;margin-left:40rpx' bindtap="tapdiscovery"  >发现</text>
+<text style='float:left;font-size:35rpx;margin-left:30rpx'bindtap="tapstore" >好店</text>
+
+<view  bindtap="click_search">
+          <image src="/static/images/search.png" style='width:50rpx;height:50rpx;float:right;margin-right:40rpx;'></image>
+        </view>
+        
+        </view>
+        <view style='width:100%;height:3px;background-color:#F4F4F4;position:absolute;top:66px;'>
+        </view>
+
+<image class="tpic1" src="/assets/images/disstore.png" wx:if="{{status}}"></image>
+<image class="tpic2" src="/assets/images/disstore.png" wx:if="{{!status}}"></image>
+
+        </view>
+
+      <!-- ----------好店页面---------- -->
+<view class="storeview" wx:if="{{status}}">
+<text style='float:left;font-size:40rpx;margin-left:40rpx;margin-bottom:10rpx;width:350px;text-align:left;'>即将开抢</text>
+ <swiper duration="300" interval="5000" autoplay="{{autoplay}}" bindchange="onSwiperChange" current="{{ curIndex }}"  style="overflow: visible;">
+      <swiper-item wx:for="{{  storeSwiperList }}" style="overflow: visible;height:170px" wx:key="actpic;background-color:green;">
+        <view  style="width: 100%; height: 300rpx; background: #fff;box-shadow: 0 0 5px rgba(99, 99, 99, 0.644);border-radius:10px; -webkit-transform: scale({{ curIndex == index ? 0.9 : 0.65 }}) translate({{ (curIndex == index - 1 || curIndex == index + 1) ? (curIndex - index) * 30 : 0 }}%, 0); -webkit-transition: .3s; position: relative;" data-actid="{{item.id}}" data-pubid='{{item.publisherId}}' bindtap="click_store_activity" mode="aspectFill">
+        <view style='height:130px;'><image src="{{ item.actPic }}" style='overflow:hidden;height:100px;width:100px;border-radius:5px;margin:10px;float:left;'></image>
+        <text class="store_title">{{item.title}}</text>
+        <!-- <text >会员价:price元</text> -->
+        <text>\n</text>
+        <text class='price'>{{item.price}}0元</text>
+        </view>
+        <view style='text-algin:left;'>
+        <text style='margin:20px;'>明天12:00开抢 </text>
+        <view class='get'>开抢提醒</view>
+        </view>
+        </view>
+        <view class="storehotevents;">
+          <view class="tag recommend"></view>
+
+        </view>
+      </swiper-item>
+    </swiper>
+
+<text style='font-size:40rpx;margin-left:40rpx;;width:350px;text-align:left;'>好店推荐</text><text>\n</text>
+<text style='font-size:30rpx;margin-left:40rpx;;width:350px;text-align:left;color:#959595;'>严选靠谱好店</text>
+<view class='activities'>
+  <view class='store_acts' wx:for="{{storeList}}" wx:key="id">
+     <image mode="aspectFill" class='pic' src="{{item.actPic}}" wx:if="{{item.actPic}}" data-actid="{{item.id}}"  bindtap="click_store_activity"></image>
+          <!-- <view class="tag tag_{{item.acttype}}">{{item.acttypename}}</view> -->
+           <text class="store_title" style='width:680rpx;'>{{item.title}}</text>
+   </view>
+</view>
+
+  </view>
+
+
+
+
+
+
+
+<view class="discoveryview" wx:if="{{!status}}">
+
+  <view class='acts' wx:for="{{postsList}}" wx:key="id">
+     <image mode="aspectFill" class='pic' src="{{item.actPic}}" wx:if="{{item.actPic}}" data-actid="{{item.id}}" data-pubid='{{item.publisherId}}' bindtap="click_activity"></image>
+      <view class="horizontal">
+          <view class="tag tag_{{item.acttype}}">#{{item.acttypename}}#</view>
+          <text class="title">{{item.title }}</text>
+
+
+  <view class='act'>
+  <view class='line'>
+      <image class='date' src="/static/images/date.png"></image> 
+      <text style='font-size:13px;line-height:23px;margin-left:10rpx;'>有效日期:{{item.endtime}}</text></view>
+   <view class='line'>   
+      <image class='date' src="/static/images/location.png"></image> 
+      <text bindtap='gotoMap' style='font-size:13px;line-height:23px;margin-left:10rpx;color:#2A6693'>{{item.address }}</text></view>
+         <view class='line'>   
+      <text class="intro">{{item.content}}</text></view>
+          <view class='line'>   
+      <image mode="aspectFill" src="{{item.publisherPic}}" wx:if="publisherPic" class='headpic'></image>
+      <text  style='font-size:13px;line-height:23px;margin-left:10rpx;'>{{item.publisherName}}</text> 
+       <text style='font-size:13px;line-height:23px;float:right;'>{{item.pubtime}}</text>
+       
+          </view>
+    <view class='line' id="end">  
+
+       <text style="color:rgba(0,0,0,0.5);height:15px;width:15px;float:right;">{{item.likenum}}</text>
+                  <image style = "height:15px;width:15px;margin-right:5px;margin-left:30px;float:right;"        src="/static/images/home-like.png"></image>
+
+
+                  <text style="color:rgba(0,0,0,0.5);height:15px;width:15px;float:right;">{{item.commentnum}}</text>   
+      <image style = "height:15px;width:15px;margin-right:5px;float:right;" src="/static/images/comments.png"></image>
+
+          </view>
+
+
+            
+  </view>
+  </view>
+</view>
+    <view class="loadingmore">
+      <view wx:if="{{!isEmpty}}">
+        <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
+      </view>
+      <view class="no-more" wx:if="{{isEmpty}}">---暂时没有更多活动了噢，等会再来看我吧---</view>
+    </view>
+    </view>
+    <tab-shadow/>
+  </scroll-view>
+</view>
+

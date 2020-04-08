@@ -1,0 +1,250 @@
+ <import src="../template/activity/act_comment.wxml" />
+<import src="../template/activity/applyed.wxml" />
+
+<loading hidden="{{loading}}">加载中...</loading>
+
+<scroll-view scroll-y="{{!commentstatus}}" class="all_scr" style="padding-bottom:100rpx;">
+
+  <!--活动封面-->
+  <image wx:if="{{listPic}}" class="header_imgss" src="{{listPic}}" mode="aspectFill" bindtap='seeActBig'></image>
+
+<view class='eventcreator' style='margin-left:40rpx;margin-top:30rpx;height:40px;display:flex'>
+    <image src="{{publisherPic}}" style='border-radius:50%;height:60rpx;width:60rpx;' >    </image>
+     <text style='line-height:30px;margin-left:10rpx' >{{publisherName}}</text>
+
+</view>
+  <view class="event_con">
+
+
+<view class='storeinfo'>
+   <text style='float:left;font-size:18px;margin-left:0px;margin-top:0px;width:350px;text-align:left;'> {{eventTitle}}
+      </text>
+</view>
+      </view>
+      <view class="actDetail" style="margin-top:30rpx;">
+        <view style="padding:0 20rpx 50rpx;margin-left:5px;margin-top:-05px;">
+          <block class="act_contents paddingLR">
+            
+            <text style='color:grey;' >截止时间：{{endtime}}\n</text>
+            <text style='color:grey;' >活动人数:{{peoplenum}}\n</text>
+            
+             <text bindtap="viewActAddress" style='color:grey;' >活动地址:{{address}}\n</text>
+
+          </block>
+        </view>
+        <!-- </view> -->
+    
+
+    
+    <view class="event_input" style="padding-bottom:15rpx;margin-left:20px;margin-top:-27px;">
+    
+      <view style="display:flex;justify-content:flex-end">
+      <view class='subtitle' style="margin-right:12px;color:grey">
+     <image src='/static/images/event_agree.png'style="width:28rpx;height:28rpx;padding-right:05px;"></image><text style='padding-right:60px;'>{{agreeNum}}</text>
+      <image src='/static/images/event_commit.png'style="width:28rpx;height:28rpx;padding-right:05px;"></image> <text>{{commNum}}</text>
+      </view>
+ 
+      </view>
+    </view>
+
+<!-- -------点赞列表------- -->
+        <view class="likePost">
+
+          <view class="likeText">
+          <view style='flex-direction:row;display:flex;margin-top:15px'>
+          <view class="likenumtext">已参与\n
+          {{agreeNum}}人</view>
+
+<view class='likeimgcss'>
+            <block wx:key="id" wx:for="{{likerList}}" style='transform:translateX(30rpx)'>
+              <image src="{{item.likerpic}}" class="gravatarLikeImg"></image>
+            </block>
+</view>
+<button class="sharebtn" bindtap="showSharecode">邀请好友一起参加</button>
+</view>
+
+ <view class="code-succeed" wx:if="{{codeHehe}}" style="opacity:1;pointer-events:auto;">
+    <view class="code-succeed-toast">
+      <image src="/static/images/close1@2x.png" class="code-close" bindtap="closeCode"></image>
+
+      <view class="code-club-content">
+        <view class="code-club-theme">邀请好友一起</view>
+
+       <view class="text-space"style="line-height: 48rpx;letter-spacing: -0.6rpx;color:grey;">保存二维码分享或者打印</view>
+        <view class="text-space"style="color:grey">微信扫一扫即可参与</view>
+
+        <view class="code-club-tip text-center">或</view>
+       
+         <view class="text-center text-space">点击【...】－“转发“给好友或者分享到微信群</view>
+      </view>
+      <view>
+        <image mode="widthFix" class="shareview-codeimg" src="data:image/png;base64,{{imageBytes}}"></image>
+      </view>
+    </view>
+  </view>
+
+
+
+            <view class="event_lineh"style="display:flex;position:relative;padding-top:20px;">         </view>
+            <view class="showgroupview"bindtap="showgroup">
+            <image class='groupqr' bindtap="showgroup" src="/assets/images/adddemo.png" mode="widthFix"  wx:if="{{join ==1 || join == 3|| join==0}}" style='width:100%;margin-top:10px'></image>
+            <text style="margin-top:-59px;display:flex;margin-left:55px;font-size:13px;color:black;position:relative;" 
+            >{{eventTitle}}@活动群</text>
+            <text style="color:grey;position:relative;display:flex;margin-left:55px">进入活动群提前获得活动信息(优惠信息)</text>
+           
+            </view>
+
+          </view>
+
+        </view>
+
+
+ <view class="code-succeed" wx:if="{{groupview}}" style="opacity:1;pointer-events:auto;">
+    <view class="code-succeed-toast"style="width:75%;padding-bottom:0rpx;margin:13% 0 0 13%;margin-top:35%;" >
+      <image src="/static/images/close1@2x.png" class="code-close" bindtap="closegroup"></image>
+
+      <view class="shareview-content"style="60rpx 0 0rpx">
+      
+        <image src="/assets/images/showgroup.png" mode='widthFix'style="width:111.11%" >
+       </image>
+
+   
+        <view class="text-space"style="color:black;margin-top:30rpx">点击"去回复"，发送"{{groupnum}}"</view>
+
+         <view class="text-center text-space"style="color:black;margin-top:10rpx">即可进入群哦！</view>
+ <button class='contact-btn' style="display: inline-block;margin-top:20rpx" open-type='contact'>去回复</button> 
+<view></view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+ <!--活动内容，联系方式-->
+
+<view class="{{tarBarFixed? 'topnavFixed' : 'topnavAbsolute'}}">
+    <view class="part">
+      <view class="xiangqing" bindtap="toeventinfo">
+        <text class="sort1" id="0">活动详情
+      </text>
+        <view class="detail-tabar-border {{status==0?'detail-tabar-bg':''}}"></view>
+      </view>
+    
+      
+    </view>
+</view>
+
+
+
+
+
+
+    <!--活动内容-->
+    <view wx:if="{{status==0}}">
+      <view class="actDetail" style="margin-top:50rpx;">
+        <view style="padding:0 32rpx 51rpx;word-break:break-word;">
+          <block class="act_contents paddingLR">
+            <text>{{listContent}}</text>
+          </block>
+        </view>
+
+
+
+
+
+
+
+
+        <!--已加入title-->
+        <view class="applyed_title paddingLR">
+          <text class="applyed">{{joinnumber}}人加入</text>
+          <text class='surplus_apply' wx:if="{{peoplenum < 0}}">人数不限</text>
+          <text class='surplus_apply' wx:elif="{{peoplenum-joinnumber <= 0}}">人满了</text>
+          <text class='surplus_apply' wx:elif="{{peoplenum-joinnumber > 0 }}">剩余名额 : {{peoplenum-joinnumber}}</text>
+        </view>
+     
+
+        <!--加入列表-->
+        <view wx:if="{{joinnumber > 0}}" wx:for="{{joinList}}" wx:key="apply">
+          <template is="applyed" data="{{item}}" />
+        </view>
+        
+
+    </view>
+    </view>
+  </view>
+
+
+<view class="centerbutton-view">
+  <view class="centerbutton-c">
+    <form bindtap="clickjoin" data-join="{{join}}" report-submit="true">
+      <button class="centerbutton {{join == 0?'un-has':'has'}}" form-type="submit">
+        <view wx:if="{{join == 3}}">
+        <view wx:if="{{actstatus != 2 && isShow == 1}}">关闭活动</view>
+          <view wx:if="{{actstatus != 2 && isShow == 0}}">开启活动</view>
+          <view wx:if="{{actstatus == 2}}" style="opacity:0.6">开启活动</view>
+        </view>
+        <view wx:if="{{join != 3}}">
+          <view wx:if="{{peoplenum < 0}}">
+            <view wx:if="{{join == 0}}">现在加入</view>
+            <view wx:elif="{{join == 1}}">取消加入</view>
+          </view>
+          <view wx:if="{{peoplenum > 0}}">
+            <view wx:if="{{peoplenum-joinnumber > 0 && join == 0}}">现在加入</view>
+            <view wx:elif="{{peoplenum-joinnumber > 0 && join == 1}}">取消加入</view>
+            <view wx:else="{{peoplenum-joinnumber <= 0 }}">人数已满</view>
+          </view>
+        </view>
+      </button>
+    </form>
+    </view>
+  <!-- <!-- </view> -->
+</view>
+
+
+<view class="commitbutton"style="display:flex;">
+<image class="clickcomicon" bindtap="clickcommit" src="/static/images/clickcomicon.png"> </image>
+</view>
+
+
+
+</scroll-view>
+
+
+<view class="commentview" wx:if="{{commentstatus}}" catchtouchmove="preventTouchMove" >
+<view class="comment-header">
+
+        <!--评论title-->
+        <scroll-view scroll-y="true" >
+        <view class="comment_title paddingLR">
+          <text class="comment_text">{{commNum}}条评论</text>
+          <text bindtap="showCommentDialog" class='comment_button' style="color:#ffae43">评论</text>
+        </view>
+        <view wx:if="{{!(commNum > 0)}}" class="comment-footer-txt">暂无评论</view>
+
+        <!--评论列表-->
+        <view wx:if="{{ commNum > 0}}" wx:for="{{commentList}}" wx:key="comment">
+          <template is="comment" data="{{item}}" />
+        </view>
+
+        <view class="comment-footer-txt" wx:if="{{ commNum > 0}}" >没有更多评论啦！</view>
+</scroll-view>
+      </view>
+          <view class="comment-footer" bindtap="shutcomment"  >
+      
+              <image bindtap="shutcommit" src="/static/images/shutcomment.png"style="width:50px;height:50px;position:absolute;top:20px;left:45%;"></image>
+</view>
+    </view>
+
+<!--评论输入框-->
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+<view class="dialog" wx:if="{{showCommentDialog}}" bindtap="hideCommentDialog"></view>
+<view class="dialog_content" wx:if="{{showCommentDialog}}">
+  <input bindinput="commentText" placeholder="{{commentInputHolder}}" focus="true" class="dialog-content-input" />
+  <view>
+    <button catchtap="publishComment" class="dialog-content-btn">评论</button>
+  </view>
+</view>
+

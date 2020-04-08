@@ -1,0 +1,9 @@
+<!--pages/mine/mine.wxml-->
+<view class="container-mine">
+   
+                     <image src="../../../assets/images/idcard2.png"/>
+<text style="color:grey;text-align:center;">上传学生证正面</text>
+     
+         <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">立即上传</button>
+                </view>
+     

@@ -1,0 +1,77 @@
+<!--pages/mine/mine.wxml-->
+<view class="container-mine">
+    <view class="page__hd">
+        <view class="page__hd-tp"  bindtap="editme"   >认证</view>
+        <view class="page__hd-md center">
+            <image src="{{userInfo.avatarUrl}}"/>
+        </view>
+        <view class="page-username center">{{userInfo.nickName}}</view>
+        <view class="page__hd-bt page-flex">
+            <view class="page-bt-lt">
+                <view class="page-lt-readingtimes">{{userInfo.province}}</view>
+                <view class="page-lt-readingtime">地区</view>
+            </view>
+            <view class="cline">|</view>
+            <view class="page-bt-rt">
+                <view class="page-rt-lt ">
+                    <view class="page-rt-numbers">6812</view>
+                    <view class="page-rt-items">活跃值</view>
+                </view>
+            </view>
+            <view class="page-rg">></view>
+        </view>
+    </view>
+    <view class="page__bd">
+      <navigator url="../orders/orders" class="page__bd-items page-flex">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/news.png" />
+            </view>
+            <view class="page-items-md">我的订单</view>
+            <view class="page-items-others"></view>
+            <view class="page-items-ft">></view>
+        </navigator>
+
+        <view class="page__bd-items page-flex" bindtap="tomyNews">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/news.png" />
+            </view>
+            <view class="page-items-md">我的消息</view>
+            <view class="page-items-others"></view>
+            <view class="page-items-ft">></view>
+        </view>
+        <view class="page__bd-items page-flex"bindtap="minehost">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/booklist.png" />
+            </view>
+            <view class="page-items-md">我的发起</view>
+            <view class="page-items-others"></view>
+            <view class="page-items-ft">></view>
+        </view>
+        <view class="page__bd-items page-flex"bindtap="minejoin">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/note.png" />
+            </view>
+            <view class="page-items-md">我的加入</view>
+            <view class="page-items-others">8</view>
+            <view class="page-items-ft">></view>
+        </view>
+                       
+        <view class="page__bd-items page-flex" bindtap="mineadvice">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/times.png" />
+            </view> 
+            <view class="page-items-md">反馈建议</view>
+            <view class="page-items-others"></view>
+            <view class="page-items-ft">></view>
+        </view>
+        <view class="page__bd-items page-flex" bindtap="mineabout">
+            <view class="page-items-lt">
+                <image src="../../assets/images/mines/update.png" />
+            </view>
+            <view class="page-items-md">关于我们</view>
+            <view class="page-items-others">了解更多</view>
+            <view class="page-items-ft">></view>
+        </view>
+
+    </view>
+</view>

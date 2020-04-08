@@ -1,0 +1,125 @@
+  <!-- 新建活动 -->
+<view class="initiatepage">
+  <form bindsubmit="submitForm">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+    <view class="larofixed">
+      <!-- 活动名 -->
+      <view class="larotitle">
+      <view class="laro t-name">
+        <input name="title" class="input" maxlength="100" placeholder="活动名" value="{{title}}" />
+      </view>
+   </view>
+    </view>
+         <!-- 活动内容 -->
+    <view class="larofixed border">
+      <view class="laro-big my-nick">
+        <textarea name="content" class="weui-textarea" placeholder="活动内容" value="{{content}}" style="height: 9em" bindinput="bindTextAreaChange" maxlength="{{noteMaxLen}}" wx:if="{{text_status}}" />
+                <view class="chnumber">{{noteNowLen}}/{{noteMaxLen}}</view>
+
+      </view>
+      
+          <view class="add_pic" bindtap="uploadPic" wx-if="{{!isSrc}}">
+      <view>添加封面（选）</view>
+    </view>
+
+<view class="animated jackInTheBox" id="s2t" wx:if="{{!text_status}}" bindtap="taps2t">
+  <view class="s2t-header" >您好，需要发起什么活动呢？</view>
+
+  <view class="design-s2t"> 
+  <!-- <image class="design-s2t-pic" src="/assets/images/1.gif"></image> -->
+
+  <image class="design-s2t-pic" src="{{gifsrc}}" > </image> 
+
+  </view>
+      <view class="s2ttext"> 说话内容：{{currentText}} </view>
+
+      <button class="start-s2t" catchtouchstart="streamRecord" catchtouchend="endStreamRecord">长按说话 </button>
+      <view class="close-s2t" bindtap="hides2t">完成</view>
+     
+
+
+</view>
+
+
+    <view wx:if="{{isSrc}}" class="image_box">
+      <view class="picPre">
+        <image src="{{src}}" laroe="aspectFit"></image>
+        <view bindtap="clearPic"></view>
+      </view>
+    </view>
+   <!--  <view>语音识别内容：{{currentText}} </view>
+<cover-image class="box-close" src="/static/images/more/close.png" bindtap="hideNotice"></cover-image>
+    <view  catchtouchstart="streamRecord" catchtouchend="endStreamRecord">开启语音识别 </view> -->
+       <image class="s2tclosepic" src="/assets/icons/recorder.png" bindtap="shows2t"></image>
+    </view>
+
+    <view class="larofixed border">
+      <!-- 活动类别 -->
+      <view class="laro t-sign-time">
+        <text class="key">活动分类</text>
+        <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view class="value" name="types">{{types[typeIndex]}}
+            <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 活动地点 -->
+      <view class="laro t-address" bindtap="chooseLocation">
+        <text class="key">活动地点</text>
+        <text name="address" class="value" bindtap="addressChange" value="{{address}}">{{address}}</text>
+        <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+      </view>
+
+      <!-- 有效时间 -->
+      <view class="laro t-sign-time">
+        <text class="key">截止时间</text>
+        <picker value="{{date}}" start="{{date}}" end="2020-09-01" bindchange="bindDateChange" mode="date">
+          <view class="value" name="endtime">{{date}}
+            <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+          </view>
+        </picker>
+      </view>
+
+
+      <view class="laro  t-early">
+        <text class="key">更多信息</text>
+        <switch type="switch" bindchange="advancedSwitch" name="switchHide" />
+      </view>
+      <view wx:if="{{peostatus}}">
+        <view class="laro t-name">
+          <text class="key">允许人数</text>
+          <input name="peoplenum" type="number" class="input" maxlength="100" placeholder='点击输入' value="{{peoplenum}}" />
+          <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+        </view>
+      </view>
+    </view>
+
+  
+
+    <view class="larofixed border"></view>
+    <view class="larofixed bord"
+          wx:if="{{peostatus}}"
+          >
+    
+      <view class="add_pic t-code" bindtap="uploadCodePic" wx-if="{{!isCodeSrc}}">
+      <view class='code'>上传本活动群二维码（选）</view>
+    </view>
+    <view wx:if="{{isCodeSrc}}" class="image_box">
+      <view class="picPre">
+        <image src="{{codeSrc}}" laroe="aspectFit"></image>
+        <view bindtap="clearCodePic"></view>
+      </view>
+    </view>
+    </view>
+
+    <view class="larofixed border">
+   
+
+
+      <view class="submit-btn">
+        <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">发起</button>
+      </view>
+    </view>
+  </form>
+</view>

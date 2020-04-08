@@ -1,0 +1,142 @@
+.main{
+  overflow: hidden;
+}
+.order_tab{
+  height: 88rpx;
+  width: 690rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  position: fixed;
+  background: #FFF;
+  z-index: 99;
+  top: 0;
+}
+.order_tab text{
+  font-size: 28rpx;
+  line-height: 88rpx;
+  position: relative;
+}
+.order_tab .active{
+  color: #AE2121;
+}
+.order_tab .active:after{
+  content: "";
+  position: absolute;
+  width: 24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16rpx;
+  border-radius: 4rpx;
+  border-bottom: 6rpx solid #AE2121;
+  overflow: hidden;
+}
+.order_List{
+  border-top: 16rpx solid #F5F5F5;
+  margin-top: 88rpx;
+}
+.order_item{
+  border-bottom: 16rpx solid #F5F5F5;
+}
+.user_info{
+  border-bottom: 2rpx solid #E8E8E8;
+  padding: 22rpx 30rpx 24rpx;
+}
+.user_info image{
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.user_info .user_name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 400rpx;
+  font-size: 28rpx;
+  line-height: 42rpx;
+}
+.user_info .order_status{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #F61600;
+}
+.goods_item{
+  margin: 30rpx 30rpx 0 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid #E8E8E8;
+  position: relative;
+}
+.goods_item image{
+  width: 260rpx;
+  height: 132rpx;
+  margin-right: 30rpx;
+  border-radius: 8rpx;
+}
+.goods_item .good_title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 390rpx;
+  font-size: 26rpx;
+  line-height: 1em;
+}
+.goods_item .good_type{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 140rpx;
+  font-size: 26rpx;
+  line-height: 1em;
+  color: #7E7E7E;
+  position: absolute;
+  bottom: 30rpx;
+  left: 292rpx;
+}
+.goods_item .good_price{
+  font-size: 26rpx;
+  line-height: 1em;
+  color: #7E7E7E;
+  position: absolute;
+  bottom: 30rpx;
+  right: 0;
+}
+.goods_item .good_refund{
+  font-size: 26rpx;
+  line-height: 1em;
+  color: #F61600;
+  position: absolute;
+  top: 52rpx;
+  right: 0;
+  text-align: right;
+  height: 1em;
+}
+.total{
+  height: 86rpx;
+  border-bottom: 2rpx solid #E8E8E8;
+  line-height: 86rpx;
+  font-size: 26rpx;
+  margin: 0 30rpx;
+  width: 690rpx;
+}
+.total .postage{
+  margin-left: 30rpx;
+}
+.btns{
+  height: 106rpx;
+}
+.btns .btn{
+  width: 140rpx;
+  height: 40rpx;
+  border: 2rpx solid #000;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  margin-top: 31rpx;
+}
+
+.main .return_index{
+  bottom: 178rpx;
+}

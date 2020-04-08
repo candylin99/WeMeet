@@ -1,0 +1,83 @@
+<scroll-view scroll-y class='main' bindscrolltolower="scrolltolower" scroll-top="{{scrollTop}}" >
+  <view class='order_tab'>
+    <text class="{{orderType == 0 ? 'active' : ''}}" bindtap='orderTab' data-type="0">全部订单</text>
+    <text class="{{orderType == 1 ? 'active' : ''}}" bindtap='orderTab' data-type="1">待付款</text>
+    <text class="{{orderType == 2 ? 'active' : ''}}" bindtap='orderTab' data-type="2">待使用</text>
+    <!-- <text class="{{orderType == 3 ? 'active' : ''}}" bindtap='orderTab' data-type="3">待收货</text> -->
+  </view>
+  <view class='order_List'>
+    <view class='order_item' wx:key="key" wx:for="{{ordersItem}}">
+
+      <view class='user_info clearBoth'>
+        <image class='float_left' src='{{item.avatar}}'></image>
+        <view class='user_name float_left'>{{item.user_nicename}}</view>
+        <view class='order_status float_right'>
+        <block wx:if="{{item.process_status == 33}}">交易完成</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status == 0}}">待付款</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 0}}">待发货</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 1}}">待收货</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 2}}">交易完成</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 33}}">交易关闭</block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0&&item.process_status!=0&&item.process_status!=1&&item.process_status!=2&&item.process_status!=33}}"></block>
+        </view>
+      </view>
+
+      <view bindtap='navigateToOrderInfo' data-id="{{item.id}}">
+      <view class='goods_item clearBoth' wx:key="key" wx:for="{{item.goods}}" wx:for-item="good" data-id="{{item.id}}">
+        <image class='float_left' lazy-load mode="aspectFill" src='{{good.image}}' data-id="{{item.id}}"></image>
+        <view class='good_title float_left' data-id="{{item.id}}">{{good.object_title}}</view>
+        <view class='good_type' data-id="{{item.id}}">{{good.goods_type_desc}}</view>
+        <view class='good_refund' catchtap='goodRefund'>
+          <block wx:if="{{good.old_refund == 1 && good.process_status == 25}}">退款中</block>
+          <block wx:if="{{good.old_refund == 1 && good.process_status == 26}}">处理完成</block>
+          <block wx:if="{{good.old_refund == 1 && good.process_status == 30}}">转售后</block>
+          <block wx:if="{{good.old_refund == 1 && good.process_status == 31}}">售后处理完成</block>
+          <block wx:if="{{good.old_refund == 1 && good.process_status == 33}}">处理完成</block>
+          <block wx:if="{{good.old_refund != 1 && good.refund_status == 1}}">退款中</block>
+          <block wx:if="{{good.old_refund != 1 && good.refund_status == 2}}">退款失败</block>
+          <block wx:if="{{good.old_refund != 1 && good.refund_status == 3}}">退款成功</block>
+        </view>
+        <view class='good_price' data-id="{{item.id}}">￥ {{good.price}} x {{good.counts}}</view>
+      </view>
+      <view class='total' data-id="{{item.id}}">
+        <text class='float_left' data-id="{{item.id}}">共{{item.goods.length}}件商品</text>
+        <text class='float_right postage' data-id="{{item.id}}">运费： ￥ {{item.postage}}</text>
+        <text class='float_right' data-id="{{item.id}}">总价： ￥ {{item.total_fee}}</text>
+      </view>
+      </view>
+
+      <view class='btns'>
+        <block wx:if="{{item.process_status != 33 && item.order_status == 0}}">
+          <view class='btn float_right' bindtap='immediatePayment'>立即付款</view>
+          <view class='btn float_right' bindtap='clearOrder' data-ordernumner="{{item.order_number}}">取消订单</view>
+        </block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 0}}">
+          <view class='btn float_right' bindtap='remindDeliver' data-orderid="{{item.id}}">提醒发货</view> 
+        </block>
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 1}}">
+          <view class='btn float_right' bindtap='takeDelivery' data-ordernumner="{{item.order_number}}">确认收货</view> 
+          <navigator hover-class='none' url="/pages/express/express?order_number={{item.order_number}}" class='btn float_right'>
+            查看物流
+          </navigator>
+        </block>
+        <block wx:if="{{item.process_status == 33}}">
+          <navigator hover-class='none' url="/pages/express/express?order_number={{item.order_number}}" class='btn float_right'>
+            查看物流
+          </navigator>
+          <view class='btn float_right' bindtap='deleteOrder' data-orderid="{{item.id}}" data-index="{{index}}">删除订单</view> 
+        </block>
+
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 2}}">
+          <navigator hover-class='none' url="/pages/express/express?order_number={{item.order_number}}" class='btn float_right'>
+            查看物流
+          </navigator>
+          <view class='btn float_right' bindtap='deleteOrder' data-orderid="{{item.id}}" data-index="{{index}}">删除订单</view> 
+        </block>
+
+        <block wx:if="{{item.process_status != 33 && item.order_status != 0 && item.process_status == 33}}">
+          <view class='btn float_right' bindtap='deleteOrder' data-orderid="{{item.id}}" data-index="{{index}}">删除订单</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</scroll-view>

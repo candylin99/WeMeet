@@ -1,0 +1,43 @@
+/* pages/mine/mine.wxss */
+@import '/style/weui.wxss';
+
+
+.container-mine {
+  margin: 0;
+  padding: 0;
+  font-family: PingFangSC-Regular, sans-serif;
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.container-mine 
+text{
+float:left;
+margin-left:36%;
+opacity: 0.7;
+margin-top:-25rpx;
+
+}
+image {
+width:100%;
+
+margin-right:0;
+display:inline-block;
+overflow:hidden;
+margin-top:65px;
+}
+.button {
+width:65%;
+height:80rpx;
+line-height:80rpx;
+text-align:center;
+font-size:18px;
+border:0 none;
+background-color:#FDD83D;
+color:#fff;
+margin:30rpx auto;
+border-radius:50px;
+margin-top:60rpx;
+}

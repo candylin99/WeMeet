@@ -1,0 +1,10 @@
+<text class="text">
+WeMeet
+基于微信小程序的智能社交APP。寻找周边有共同爱好的同学相遇聚一起，把大学的生活轨迹默默记录在案。
+
+</text>
+
+<view class="copyright">
+<text>广东东软学院四人一猫团队</text>
+<view><text>{{year}} All Rights Reserved</text></view>
+</view>
